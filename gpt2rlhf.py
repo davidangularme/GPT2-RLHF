@@ -22,6 +22,7 @@ nltk.download('punkt')
 # Step 1: Load the GPT-2 Model and Tokenizer
 model_name = "gpt2"
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
 gpt2_model = GPT2LMHeadModel.from_pretrained(model_name)
 
 # Add padding token to tokenizer
@@ -104,6 +105,9 @@ class CustomEnv(Env):
 
     def get_observation(self):
         encoded = self.tokenizer.encode(self.current_text, padding='max_length', max_length=self.max_length, truncation=True)
+        # Ensure the encoded observation is always of length self.max_length
+        if len(encoded) < self.max_length:
+            encoded += [self.tokenizer.pad_token_id] * (self.max_length - len(encoded))
         return np.array(encoded)
 
 # Initialize environment
@@ -144,3 +148,51 @@ post_training_scores = [avg_feedback for _, _, avg_feedback in post_training_res
 
 print(f"Average Baseline Feedback: {sum(baseline_scores) / len(baseline_scores):.4f}")
 print(f"Average Post-Training Feedback: {sum(post_training_scores) / len(post_training_scores):.4f}")
+
+
+def generate_text_with_ppo(gpt2_model, ppo_model, prompt, max_length=50):
+    input_ids = tokenizer.encode(prompt, return_tensors='pt')
+    attention_mask = torch.ones(input_ids.shape, dtype=torch.long)
+    
+    env = CustomEnv(gpt2_model, tokenizer, prompt)
+    
+    for _ in range(max_length):
+        with torch.no_grad():
+            gpt2_output = gpt2_model(input_ids, attention_mask=attention_mask)
+            logits = gpt2_output.logits[:, -1, :]
+            
+            # Get PPO action (token prediction)
+            obs = env.get_observation()
+            #print(f"Observation shape: {obs.shape}")  # Debugging line
+            #print(f"Observation content: {obs}")  # Additional debugging line
+            
+            action, _ = ppo_model.predict(obs)
+            
+            # Rest of the function remains the same...
+            # Combine GPT-2 logits with PPO action
+            logits[0, action] += 2.0  # Boost the probability of the PPO-selected token
+            
+            next_token = torch.argmax(logits, dim=-1).unsqueeze(0)
+            
+            input_ids = torch.cat([input_ids, next_token], dim=-1)
+            attention_mask = torch.cat([attention_mask, torch.ones((1,1), dtype=torch.long)], dim=-1)
+            
+            if next_token.item() == tokenizer.eos_token_id:
+                break
+    
+    return tokenizer.decode(input_ids[0], skip_special_tokens=True)
+
+# Test the PPO-guided text generation
+print("\nPPO-Guided Text Generation:")
+for prompt in prompts:
+    ppo_generated_text = generate_text_with_ppo(gpt2_model, ppo_model, prompt)
+    print(f"Prompt: {prompt}")
+    print(f"Generated Text: {ppo_generated_text}")
+    print(f"Feedback Score: {simulate_feedback(ppo_generated_text):.4f}\n")
+
+# Compare PPO-guided generation with baseline and post-training
+ppo_scores = [simulate_feedback(generate_text_with_ppo(gpt2_model, ppo_model, prompt)) for prompt in prompts]
+print("Final Performance Comparison:")
+print(f"Average Baseline Feedback: {sum(baseline_scores) / len(baseline_scores):.4f}")
+print(f"Average Post-Training Feedback: {sum(post_training_scores) / len(post_training_scores):.4f}")
+print(f"Average PPO-Guided Feedback: {sum(ppo_scores) / len(ppo_scores):.4f}")
