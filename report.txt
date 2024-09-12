@@ -1,199 +1,3 @@
-[nltk_data] Downloading package punkt to /Users/davidblum/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
-/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py:1132: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
-  warnings.warn(
-Baseline Results:
-Prompt: The future of AI is
-Result: The future of AI is not yet clear. But even if we are able to make the AI smarter, it will still be a challenge to make the technology smarter, or make it smarter. In the future, AI will be able to predict patterns of
-
-Prompt: In a world where
-Result: In a world where it's not really necessary to have a high school diploma, the first thing you do is try to get your degree.
-
-"I want to be able to take care of my family. I want to be able to take
-
-Prompt: Climate change will
-Result: Climate change will affect the food supply in many regions, and many regions will suffer. It also has the potential to cause significant food shortages in some of the most vulnerable populations. The impacts of climate change on agriculture and on the environment are complex and the
-
-Prompt: The key to happiness is
-Result: The key to happiness is to be happy and not afraid. You can't always have the same feelings as everyone else.
-
-"You have to be happy for a certain purpose. You have to be happy for your life. It's very difficult
-
-Prompt: Technology's impact on society
-Result: Technology's impact on society and the future of digital technology in our country.
-
-The National Association of Manufacturers, the National Association of Telecommunications Companies (NATC) and the National Association of Manufacturers (NAI) are the leading manufacturers
-
-Using cpu device
------------------------------
-| time/              |      |
-|    fps             | 467  |
-|    iterations      | 1    |
-|    time_elapsed    | 2    |
-|    total_timesteps | 1024 |
------------------------------
---------------------------------------
-| time/                   |          |
-|    fps                  | 154      |
-|    iterations           | 2        |
-|    time_elapsed         | 13       |
-|    total_timesteps      | 2048     |
-| train/                  |          |
-|    approx_kl            | 0.035032 |
-|    clip_fraction        | 0.574    |
-|    clip_range           | 0.2      |
-|    entropy_loss         | -10.8    |
-|    explained_variance   | -0.38    |
-|    learning_rate        | 0.0003   |
-|    loss                 | -0.0793  |
-|    n_updates            | 10       |
-|    policy_gradient_loss | -0.123   |
-|    value_loss           | 0.824    |
---------------------------------------
-----------------------------------------
-| time/                   |            |
-|    fps                  | 141        |
-|    iterations           | 3          |
-|    time_elapsed         | 21         |
-|    total_timesteps      | 3072       |
-| train/                  |            |
-|    approx_kl            | 0.05483606 |
-|    clip_fraction        | 0.745      |
-|    clip_range           | 0.2        |
-|    entropy_loss         | -10.8      |
-|    explained_variance   | 0.667      |
-|    learning_rate        | 0.0003     |
-|    loss                 | -0.0892    |
-|    n_updates            | 20         |
-|    policy_gradient_loss | -0.132     |
-|    value_loss           | 0.248      |
-----------------------------------------
----------------------------------------
-| time/                   |           |
-|    fps                  | 136       |
-|    iterations           | 4         |
-|    time_elapsed         | 29        |
-|    total_timesteps      | 4096      |
-| train/                  |           |
-|    approx_kl            | 0.0627673 |
-|    clip_fraction        | 0.774     |
-|    clip_range           | 0.2       |
-|    entropy_loss         | -10.8     |
-|    explained_variance   | 0.666     |
-|    learning_rate        | 0.0003    |
-|    loss                 | -0.0993   |
-|    n_updates            | 30        |
-|    policy_gradient_loss | -0.127    |
-|    value_loss           | 0.17      |
----------------------------------------
-----------------------------------------
-| time/                   |            |
-|    fps                  | 131        |
-|    iterations           | 5          |
-|    time_elapsed         | 38         |
-|    total_timesteps      | 5120       |
-| train/                  |            |
-|    approx_kl            | 0.05971907 |
-|    clip_fraction        | 0.822      |
-|    clip_range           | 0.2        |
-|    entropy_loss         | -10.8      |
-|    explained_variance   | 0.66       |
-|    learning_rate        | 0.0003     |
-|    loss                 | -0.138     |
-|    n_updates            | 40         |
-|    policy_gradient_loss | -0.14      |
-|    value_loss           | 0.0704     |
-----------------------------------------
-----------------------------------------
-| time/                   |            |
-|    fps                  | 130        |
-|    iterations           | 6          |
-|    time_elapsed         | 47         |
-|    total_timesteps      | 6144       |
-| train/                  |            |
-|    approx_kl            | 0.06901841 |
-|    clip_fraction        | 0.812      |
-|    clip_range           | 0.2        |
-|    entropy_loss         | -10.8      |
-|    explained_variance   | 0.575      |
-|    learning_rate        | 0.0003     |
-|    loss                 | -0.102     |
-|    n_updates            | 50         |
-|    policy_gradient_loss | -0.129     |
-|    value_loss           | 0.0555     |
-----------------------------------------
-----------------------------------------
-| time/                   |            |
-|    fps                  | 128        |
-|    iterations           | 7          |
-|    time_elapsed         | 55         |
-|    total_timesteps      | 7168       |
-| train/                  |            |
-|    approx_kl            | 0.07599163 |
-|    clip_fraction        | 0.828      |
-|    clip_range           | 0.2        |
-|    entropy_loss         | -10.8      |
-|    explained_variance   | 0.694      |
-|    learning_rate        | 0.0003     |
-|    loss                 | -0.139     |
-|    n_updates            | 60         |
-|    policy_gradient_loss | -0.124     |
-|    value_loss           | 0.0385     |
-----------------------------------------
------------------------------------------
-| time/                   |             |
-|    fps                  | 127         |
-|    iterations           | 8           |
-|    time_elapsed         | 64          |
-|    total_timesteps      | 8192        |
-| train/                  |             |
-|    approx_kl            | 0.075378746 |
-|    clip_fraction        | 0.836       |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -10.8       |
-|    explained_variance   | 0.697       |
-|    learning_rate        | 0.0003      |
-|    loss                 | -0.107      |
-|    n_updates            | 70          |
-|    policy_gradient_loss | -0.127      |
-|    value_loss           | 0.0453      |
------------------------------------------
-----------------------------------------
-| time/                   |            |
-|    fps                  | 125        |
-|    iterations           | 9          |
-|    time_elapsed         | 73         |
-|    total_timesteps      | 9216       |
-| train/                  |            |
-|    approx_kl            | 0.07881596 |
-|    clip_fraction        | 0.821      |
-|    clip_range           | 0.2        |
-|    entropy_loss         | -10.8      |
-|    explained_variance   | 0.695      |
-|    learning_rate        | 0.0003     |
-|    loss                 | -0.117     |
-|    n_updates            | 80         |
-|    policy_gradient_loss | -0.127     |
-|    value_loss           | 0.0315     |
-----------------------------------------
------------------------------------------
-| time/                   |             |
-|    fps                  | 124         |
-|    iterations           | 10          |
-|    time_elapsed         | 82          |
-|    total_timesteps      | 10240       |
-| train/                  |             |
-|    approx_kl            | 0.076738566 |
-|    clip_fraction        | 0.821       |
-|    clip_range           | 0.2         |
-|    entropy_loss         | -10.8       |
-|    explained_variance   | 0.629       |
-|    learning_rate        | 0.0003      |
-|    loss                 | -0.0959     |
-|    n_updates            | 90          |
-|    policy_gradient_loss | -0.116      |
-|    value_loss           | 0.0573      |
------------------------------------------
 Post-Training Results:
 /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/nltk/translate/bleu_score.py:552: UserWarning: 
 The hypothesis contains 0 counts of 4-gram overlaps.
@@ -203,118 +7,154 @@ Consider using lower n-gram order or use SmoothingFunction()
   warnings.warn(_msg)
 Prompt: The future of AI is
 Samples:
-  - The future of AI is in the hands of a new breed of AI that will make it easier to understand, analyse and predict the world around us and, in the process, advance our understanding of the world around us.
+  - The future of AI is uncertain, but it's looking promising.
 
-This paper examines the
-  - The future of AI is already in its early stages. If the technology is successful, it will provide us with the tools to solve many problems in the world.
+"The biggest challenge for AI is getting rid of people who are trying to do something really complex with it," said Professor Robert L. Bickford, director of the AI Laboratory at the University of California, San Francisco. "We're not yet sure how to do it. We have to have more people who are able to take the code, which will be an exciting way for AI to work."
 
-"What I want to do is create a system that will enable us to do
-  - The future of AI is bound up in the future of the human race.
+The next
+  - The future of AI is at stake. AI is an important tool in the struggle against the power of the state to regulate and control the Internet.
 
-The future of humanity is bound up in the future of the human race.
+The real question is, how to turn this power back on?
 
-What is AI?
+At present, the most successful technologies for creating AI are the internet, social media, and the Internet of Things.
 
-AI is the study of the fundamental questions that are
-  - The future of AI is in the making.
+The internet is a very powerful tool for creating AI. It has the potential to bring about a new era of innovation and the creation of new industries
+  - The future of AI is a bit different. The future of AI is to be a society that is connected and able to communicate, and to be able to have a more balanced and stable system.
 
-What will happen when it comes to AI?
+If you have a lot of money, and you're a smart person, and you're able to communicate in a fair way, you could potentially make AI a great part of your future. But if you're not, you're not going to get that.
 
-The big question is how long it will take for AI to reach the human eye. At the moment, we can only know for certain.
-  - The future of AI is at stake.
+But I'm not sure
+  - The future of AI is uncertain, but it is certainly on the rise.
 
-The future of AI is at stake. The next time you hear someone say, "We're making it possible to do that in the real world," make sure you know what they're talking about.
-Average BLEU score: 0.1153
-Average Feedback score: 4.0121
+"In the near future, if we take AI to the next level, there will be a whole new class of people that will be able to do something that was never possible before," says Bhattacharya. "The big question is whether AI will be able to solve real problems in the future. In the case of artificial intelligence, I think it will be able to do what is not possible in the past
+  - The future of AI is very uncertain. One of the great challenges we face is the possibility that a computer will ever be able to do anything that humans cannot. The technology that we currently use is not very complex, and the underlying hardware is not very complex. We should expect to see advances in AI soon, and we should also expect to see advances in AI from a variety of different technologies.
+
+The big question is whether we will be able to meet the demand for AI in the future.
+Average BLEU score: 0.0886
+Average Feedback score: 8.7488
 
 Prompt: In a world where
 Samples:
-  - In a world where a woman can take a man's virginity without paying a dime, that's not a bad thing.
+  - In a world where the world has changed, we need to remember that the changes in the world are not a natural phenomenon. There are many changes that are happening in the world today, and I believe that these changes are not natural. The changes are not inevitable.
 
-The idea that there is no such thing as fair sex, and that if you don't get a good partner, you
-  - In a world where technology is a huge factor in the lives of millions of people, I am sure that the next generation of young people will be better equipped to cope with the challenges of life on the job, work in finance or other professions.
+"I think that if you look at the history of the world, it's clear that there's been a massive change in the way the world is doing, and the way it's being done.
 
-  - In a world where "freedom" and "freedom of religion" are the two most important things in a person's life, why does the Church encourage this particular idea?
+"I think
+  - In a world where the idea of creating a more powerful AI, artificial intelligence, or AI-enabled computers is becoming more common, companies are increasingly focusing on the future of their business.
 
-If you were to look at what the Church teaches on the issue of
-  - In a world where we live in a world that is being dominated by technology, and where we have to work to stay ahead of it, and where there is a lot of innovation going on, it's not possible to see where that will lead to
-  - In a world where everyone knows who he is and can be trusted to keep them safe, and who is also willing to help the world, what is there for the world to lose if he does not give them what they want?
+"The reality is that the future of AI is always in the future," says Andrew Cramer, a technology researcher at the University of California, Berkeley. "It's not in the future where we have to build a human equivalent to a human on a computer. It's not in the future where we
+  - In a world where a large part of the population is white, and where many people are black, one of the most important ways to protect our country is to make sure that minorities can use their voices to help us succeed.
 
-It's
-Average BLEU score: 0.0666
-Average Feedback score: 3.3745
+Trump, who has said he will build a wall along the southern border to keep out illegal immigrants, has called for a temporary ban on Muslims entering the country, and has vowed to ban travel from seven majority-Muslim countries, including Iraq, Syria, Iran, Libya
+  - In a world where people have to pay a lot more for their food, people are making sacrifices for their own comfort. That's why you get to eat your own food."
+  - In a world where the internet is increasingly used to disseminate information about people, and where there are no reliable means of identifying individuals, this is the next step in a long-standing effort to limit the spread of information about others.
+
+The idea behind this effort is to use the internet to provide information that could help people make better decisions. That information may include, but is not limited to, social media posts, emails, and texts, as well as personal information about other people.
+
+Average BLEU score: 0.0435
+Average Feedback score: 7.7850
 
 Prompt: Climate change will
 Samples:
-  - Climate change will be much less likely to be achieved than it is today if the climate does not change, says the UN climate scientist.
+  - Climate change will affect the world's food supply, but we will continue to take action to protect the world's most valuable biodiversity."
 
-"It's a really tough call for us to make, but if it does happen, we will be
-  - Climate change will be a major problem for the world economy. The world economy and people living in it will suffer because of climate change.
+"The global food supply will continue to grow, but we will continue to take action to protect the world's most valuable biodiversity."
 
-The world economy will suffer because of climate change. Climate change will be a major problem for the world economy
-  - Climate change will be more destructive than it's been in many years, and we need to address it before we have a chance to address it now," said the senior researcher.
+"The world's oceans will be depleted by 2050, but we will continue to take action to protect the world's most valuable biodiversity," the UN report said.
 
-The study comes after the Paris climate conference, which was held in
-  - Climate change will only worsen. The US will never be able to keep up with the global price of carbon. It will never be able to maintain a high level of its energy security. And it will never be able to maintain a high level of its
-  - Climate change will lead to a reduction in global average temperature over the next 50 years, according to a new study.
+"As the world's oceans continue to grow,
+  - Climate change will take a while to develop, but it's already happening.
 
-The researchers have published the results in the journal Nature Climate Change.
+The current model of climate change in the 21st century is based on a long-term scenario that assumes a doubling of CO 2 emissions over the 21st century, resulting in an increase in atmospheric CO 2 concentrations that will cause a decrease in global temperatures that will cause an increase in global sea level rise. The IPCC's model assumes a doubling of CO 2 emissions by 2100, and the IPCC's model assumes a doubling
+  - Climate change will be catastrophic for agriculture. For example, the effects of climate change on agriculture will be felt most acutely in rural areas of the developing world. The impacts on the quality of life of the poor and their children are especially acute in rural areas where climate change is particularly severe.
 
-The scientists analyzed data from the latest UN climate change
-Average BLEU score: 0.0212
-Average Feedback score: 3.7712
+In addition, the economic and social costs of climate change will be significant for many countries. Some of the most important economic and social consequences of climate change will be the loss of employment and the loss of access
+  - Climate change will cause some of these impacts to be lessened by the increase in human activity. The increase in human activity in the past has been associated with the decline in human population, with some estimates suggesting that some of these impacts could be offset by a decrease in human activity. However, some of these effects, such as the reduction in the number of people living in areas where the natural resource environment is less favourable for human life, would be offset by an increase in human activity. This suggests that
+  - Climate change will take place as well. The most important factor is the presence of climate change in the future. Climate change is a very important factor in human societies and we are not talking about a single one. We have already seen that, in the Middle East, the situation is very different than it is in other parts of the world.
+
+The best way to understand this is to think of the climate change as a kind of human action. The human action is very different from the effects of
+Average BLEU score: 0.0083
+Average Feedback score: 7.6220
 
 Prompt: The key to happiness is
 Samples:
-  - The key to happiness is to live in the present moment.
+  - The key to happiness is not only your mind but also your body.
 
-Here are some tips for how to do this.
+If you're feeling anxious, you may find yourself feeling more alone, or anxious, or anxious.
 
-1. Do not be afraid to go outside.
+You may also feel a sense of hopelessness or despair.
 
-When you are outside, you will be more likely to enjoy
-  - The key to happiness is to feel good about yourself.
-  - The key to happiness is self-awareness, not just self-satisfaction and self-compassion.
+If you're feeling anxious, you may find yourself feeling more alone, or anxious, or anxious.
 
-The best way to live your life is to avoid the self-inflicted consequences of your actions.
+If you're feeling anxious, you may find yourself feeling more alone, or anxious, or anxious.
 
-So let's take
-  - The key to happiness is that people will be willing to take responsibility for their lives. It is not easy, and there are many who are willing to take responsibility for their lives and will take responsibility for their own lives. The problem is not that they
-  - The key to happiness is the ability to do things.
+If you're feeling
+  - The key to happiness is to have fun.
 
-This is where a lot of people get frustrated. There are so many people who are trying to make themselves happy that it becomes hard to take them seriously. If we can't do something
-Average BLEU score: 0.0823
-Average Feedback score: 3.9203
+My daughter has been diagnosed with ADHD. She's a student and my daughter's friends have been supportive. I have taken her to her favorite school, and she's been fine.
+
+I love working with my daughter. She's a good student and a good person.
+
+She is a happy and very excited girl.
+
+We have a lot of fun working with our daughter. She's a great kid and the best mom I
+  - The key to happiness is being happy. I was fortunate enough to go to a good school. I was fortunate enough to have a good job. I was fortunate enough to have a good family. And I wasn't fortunate enough to have a good life.
+
+I just felt like I had to find a way to live and make a living. It's hard to find a way to live and make a living. I'm not sure if it's because I'm not happy or because I'm
+  - The key to happiness is to have it all. If you want to be happy, you have to be able to have all the things that make you happy.
+
+The best part about having happiness is that it comes with a lot of effort.
+
+If you are not going to get it all, then you need to focus on having some fun.
+
+If you want to have fun, then you have to spend time with other people.
+
+If you want to have fun,
+  - The key to happiness is to be present in the present moment, and to be present in the present moment that you are in the present moment. There are two ways to achieve this, the first is to be present in the present moment, and the second is to be present in the present moment that you are in the present moment.
+
+The first way of achieving happiness is to be present in the present moment, and to be present in the present moment that you are in the present moment.
+Average BLEU score: 0.0659
+Average Feedback score: 8.7609
 
 Prompt: Technology's impact on society
 Samples:
-  - Technology's impact on society
+  - Technology's impact on society.
 
-The new product has not been available in China since 2009.
+The first is the economic impact of the new technology.
 
-Its manufacturer, Mobi, has said it plans to start manufacturing the device in the next year.
+In the past few years, the US economy has grown at a rate of 0.5% per year, making it one of the fastest growing sectors of the economy. As a result of this rapid growth, the US has become one of the world's top 10 most efficient economies.
 
-China's central government has been pushing
-  - Technology's impact on society is also very strong. In the United States, it is a significant, albeit small, share of GDP. In the European Union, it is less than one-third, and it is much smaller.
+The second is the economic impact of the new technology.
 
-There are
-  - Technology's impact on society is immense. We know that our work on improving public transport has been a positive one for the nation.
+In the past several years, the
+  - Technology's impact on society and the environment is undeniable, but a new study shows that climate change is a factor that could have far-reaching consequences for human societies, especially for agricultural productivity and livelihoods.
 
-We have also developed the most advanced vehicle technology to date, the latest generation of supercars that can carry up
-  - Technology's impact on society is that it creates a world where all people can share in the success of their businesses.
+The new study, published in the journal Nature Climate Change, found that by 2050, climate change will likely cause a major increase in the amount of carbon dioxide released into the atmosphere.
 
-A lot of people think of Facebook as a company that creates "a place where we can talk about our work" and then
-  - Technology's impact on society is also the most significant. While it is true that we can achieve significant improvements in the economy through technological innovation, our role is to help improve the quality of life for all.
+The research team at Oxford University, led by Prof. Eric T. Niehaus of the
+  - Technology's impact on society. "We are working to expand our reach to an international audience," said Jeff Schmitt, CEO of U.S.-based digital marketing firm Digital Marketing Institute.
 
-In the years to come, as
-Average BLEU score: 0.1167
-Average Feedback score: 4.0750
+The company's marketing strategies include a digital marketing strategy that emphasizes its social media and online presence, a digital marketing strategy that emphasizes its social media presence, and a social media marketing strategy that emphasizes social media presence.
+
+"We are trying to attract people who have never used social media," said Steve
+  - Technology's impact on society, with the world's leading companies and individuals supporting its work. The global company has helped develop the best ways to make use of the latest technologies in order to help ensure that the next generation of computing devices will be better suited to meet our needs.
+
+In addition to the important work done by the team that provides us with the technology, we are also collaborating with the leading researchers in the field of computer vision and artificial intelligence, and with the leading researchers in the field
+  - Technology's impact on society was obvious, but the next step was to take action.
+
+"We had to show people that our company was serious about helping the poor, and that we were working to make sure that they were paying for the products they purchased," said Jeff Dickson, a manager at WeWork, a business incubator in Brooklyn, which is one of WeWork's partners.
+
+That is where WeWork began.
+
+In February 2012, WeWork launched WeWork
+Average BLEU score: 0.0661
+Average Feedback score: 7.6496
 
 Performance Comparison:
-Average Baseline Feedback: 3.8125
-Average Post-Training Feedback: 3.8306
+Average Baseline Feedback: 8.2899
+Average Post-Training Feedback: 8.1133
 
-PPO-Guided Text Generation:
+LMS-Guided Text Generation:
 Prompt: The future of AI is
 Generated Text: The future of AI is uncertain. The future of AI is uncertain.
 
@@ -322,22 +162,34 @@ The future of AI is uncertain. The future of AI is uncertain.
 
 The future of AI is uncertain. The future of AI is uncertain.
 
-The future of AI is uncertain.
-Feedback Score: 3.2857
+The future of AI is uncertain. The future of AI is uncertain.
+
+The future of AI is uncertain. The future of AI is uncertain.
+
+The future of AI is uncertain. The future of AI is uncertain.
+
+The future of AI is uncertain. The future
+Feedback Score: 7.6325
 
 Prompt: In a world where
 Generated Text: In a world where the world is so much more diverse, it's important to understand that the world is not always as diverse as we think it is.
 
-"We're not always going to be able to see the world in the same way that we see the
-Feedback Score: 3.1923
+"We're not always going to be able to see the world in the same way that we see the world in the movies. We're going to be able to see the world in a different way. We're going to be able to see the world in a different way. We're going to be able to see the world in a different way.
+Feedback Score: 8.7996
 
 Prompt: Climate change will
 Generated Text: Climate change will be a major driver of the global economy, and the world's population will grow by about 1.5 billion people by 2050.
 
 The world's population will grow by about 1.5 billion people by 2050.
 
-The world's population
-Feedback Score: 4.0698
+The world's population will grow by about 1.5 billion people by 2050.
+
+The world's population will grow by about 1.5 billion people by 2050.
+
+The world's population will grow by about 1.5 billion people by 2050.
+
+
+Feedback Score: 8.6874
 
 Prompt: The key to happiness is
 Generated Text: The key to happiness is to be happy.
@@ -350,8 +202,16 @@ The key to happiness is to be happy.
 
 The key to happiness is to be happy.
 
+The key to happiness is to be happy.
 
-Feedback Score: 3.3556
+The key to happiness is to be happy.
+
+The key to happiness is to be happy.
+
+The key to happiness is to be happy.
+
+The key to happiness is to
+Feedback Score: 8.0079
 
 Prompt: Technology's impact on society
 Generated Text: Technology's impact on society is not limited to the world of technology. It is also a global phenomenon.
@@ -360,10 +220,20 @@ The world of technology is changing rapidly. The world of technology is changing
 
 The world of technology is changing rapidly.
 
+The world of technology is changing rapidly.
+
+The world of technology is changing rapidly.
+
+The world of technology is changing rapidly.
+
+The world of technology is changing rapidly.
+
+The world of technology is changing rapidly.
+
 The world of technology
-Feedback Score: 3.8163
+Feedback Score: 6.8169
 
 Final Performance Comparison:
-Average Baseline Feedback: 3.8125
-Average Post-Training Feedback: 3.8306
-Average PPO-Guided Feedback: 3.5439
+Average Baseline Feedback: 8.2899
+Average Post-Training Feedback: 8.1133
+Average PPO-Guided Feedback: 7.9889
