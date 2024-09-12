@@ -1,0 +1,7 @@
+Baseline Results: The baseline results show that the initial GPT-2 model generates coherent and relevant text for each prompt. However, the responses are relatively short and sometimes lack depth or specificity.
+Post-Training Results: The post-training results show some improvement in terms of length and complexity. The BLEU scores and feedback scores vary across prompts, indicating that the model's performance is not uniform for all types of prompts.
+LMS-Guided Text Generation: The LMS-guided generation shows mixed results. Some generated texts are more elaborate and on-topic, while others seem to struggle with coherence or relevance.
+Final Performance Comparison: The final comparison shows:
+Average Baseline Feedback: 3.9780
+Average Post-Training Feedback: 3.8951
+Average PPO-Guided Feedback: 3.7586
