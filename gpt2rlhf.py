@@ -9,6 +9,7 @@ from nltk.translate.bleu_score import sentence_bleu
 from nltk.tokenize import word_tokenize
 import nltk
 import ssl
+from textstat import flesch_reading_ease, syllable_count
 
 try:
     _create_unverified_https_context = ssl._create_unverified_context
@@ -19,10 +20,9 @@ else:
 
 nltk.download('punkt')
 
-# Step 1: Load the GPT-2 Model and Tokenizer
-model_name = "gpt2"
+# Step 1: Load a larger GPT-2 Model and Tokenizer
+model_name = "gpt2" # Using a larger model
 tokenizer = GPT2Tokenizer.from_pretrained(model_name)
-
 gpt2_model = GPT2LMHeadModel.from_pretrained(model_name)
 
 # Add padding token to tokenizer
@@ -30,7 +30,7 @@ tokenizer.pad_token = tokenizer.eos_token
 gpt2_model.config.pad_token_id = gpt2_model.config.eos_token_id
 
 # Step 2: Generate Baseline Text Outputs
-def generate_text(model, prompt, max_length=50):
+def generate_text(model, prompt, max_length=100):  # Increased max_length
     inputs = tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
     outputs = model.generate(
         inputs.input_ids, 
@@ -58,27 +58,33 @@ for prompt, result in zip(prompts, baseline_results):
     print(f"Prompt: {prompt}")
     print(f"Result: {result}\n")
 
-# Step 3: Define Human Feedback (Simulated)
+# Step 3: Define Human Feedback (Improved)
 def simulate_feedback(text):
-    # More sophisticated feedback simulation
     words = word_tokenize(text.lower())
     unique_words = len(set(words))
     sentence_count = text.count('.') + text.count('!') + text.count('?')
     
     diversity_score = min(unique_words / len(words), 1) * 2  # 0-2 points
-    length_score = min(len(words) / 30, 1) * 1.5  # 0-1.5 points
-    complexity_score = min(sentence_count / 3, 1) * 1.5  # 0-1.5 points
+    length_score = min(len(words) / 40, 1) * 1.5  # 0-1.5 points
+    complexity_score = min(sentence_count / 4, 1) * 1.5  # 0-1.5 points
     
-    return diversity_score + length_score + complexity_score
+    # Add readability score
+    readability_score = flesch_reading_ease(text) / 20  # 0-5 points
+    
+    # Add syllable variety score
+    syllables = [syllable_count(word) for word in words]
+    syllable_variety = len(set(syllables)) / 5  # 0-1 points
+    
+    return diversity_score + length_score + complexity_score + readability_score + syllable_variety
 
-# Step 4: Implement RLHF
+# Step 4: Implement RLHF (Improved Environment)
 class CustomEnv(Env):
     def __init__(self, gpt2_model, tokenizer, prompt):
         super(CustomEnv, self).__init__()
         self.gpt2_model = gpt2_model
         self.tokenizer = tokenizer
         self.prompt = prompt
-        self.max_length = 50
+        self.max_length = 100  # Increased max length
         
         self.action_space = spaces.Discrete(tokenizer.vocab_size)
         self.observation_space = spaces.Box(low=0, high=tokenizer.vocab_size, shape=(self.max_length,), dtype=np.int32)
@@ -105,7 +111,6 @@ class CustomEnv(Env):
 
     def get_observation(self):
         encoded = self.tokenizer.encode(self.current_text, padding='max_length', max_length=self.max_length, truncation=True)
-        # Ensure the encoded observation is always of length self.max_length
         if len(encoded) < self.max_length:
             encoded += [self.tokenizer.pad_token_id] * (self.max_length - len(encoded))
         return np.array(encoded)
@@ -116,9 +121,9 @@ def make_env(prompt):
 
 env = DummyVecEnv([make_env(prompts[0])])
 
-# Train with PPO
-ppo_model = PPO("MlpPolicy", env, verbose=1, n_steps=1024, batch_size=64, n_epochs=10)
-ppo_model.learn(total_timesteps=10000)
+# Train with PPO (Improved hyperparameters)
+ppo_model = PPO("MlpPolicy", env, verbose=1, n_steps=2048, batch_size=128, n_epochs=20, learning_rate=1e-4)
+ppo_model.learn(total_timesteps=500000)  # Increased training time
 
 # Step 5: Evaluate Post-Training Performance
 def evaluate_model(model, prompts, num_samples=5):
@@ -149,8 +154,16 @@ post_training_scores = [avg_feedback for _, _, avg_feedback in post_training_res
 print(f"Average Baseline Feedback: {sum(baseline_scores) / len(baseline_scores):.4f}")
 print(f"Average Post-Training Feedback: {sum(post_training_scores) / len(post_training_scores):.4f}")
 
+# Step 6: LMS-like Adaptive Scaling (Improved)
+scaling_factor = 1.0
+learning_rate = 0.005  # Adjusted learning rate
 
-def generate_text_with_ppo(gpt2_model, ppo_model, prompt, max_length=50):
+def lms_update(feedback_score, target_score=4.0):  # Adjusted target score
+    global scaling_factor
+    error = target_score - feedback_score
+    scaling_factor += learning_rate * error
+
+def generate_text_with_ppo_lms(gpt2_model, ppo_model, prompt, max_length=100):  # Increased max_length
     input_ids = tokenizer.encode(prompt, return_tensors='pt')
     attention_mask = torch.ones(input_ids.shape, dtype=torch.long)
     
@@ -163,14 +176,10 @@ def generate_text_with_ppo(gpt2_model, ppo_model, prompt, max_length=50):
             
             # Get PPO action (token prediction)
             obs = env.get_observation()
-            #print(f"Observation shape: {obs.shape}")  # Debugging line
-            #print(f"Observation content: {obs}")  # Additional debugging line
-            
             action, _ = ppo_model.predict(obs)
             
-            # Rest of the function remains the same...
             # Combine GPT-2 logits with PPO action
-            logits[0, action] += 2.0  # Boost the probability of the PPO-selected token
+            logits[0, action] += scaling_factor  # Use adaptive scaling factor
             
             next_token = torch.argmax(logits, dim=-1).unsqueeze(0)
             
@@ -179,19 +188,23 @@ def generate_text_with_ppo(gpt2_model, ppo_model, prompt, max_length=50):
             
             if next_token.item() == tokenizer.eos_token_id:
                 break
-    
-    return tokenizer.decode(input_ids[0], skip_special_tokens=True)
 
-# Test the PPO-guided text generation
-print("\nPPO-Guided Text Generation:")
+    generated_text = tokenizer.decode(input_ids[0], skip_special_tokens=True)
+    feedback_score = simulate_feedback(generated_text)
+    lms_update(feedback_score)  # Update scaling factor using LMS-like method
+    
+    return generated_text
+
+# Test the LMS-guided text generation
+print("\nLMS-Guided Text Generation:")
 for prompt in prompts:
-    ppo_generated_text = generate_text_with_ppo(gpt2_model, ppo_model, prompt)
+    lms_generated_text = generate_text_with_ppo_lms(gpt2_model, ppo_model, prompt)
     print(f"Prompt: {prompt}")
-    print(f"Generated Text: {ppo_generated_text}")
-    print(f"Feedback Score: {simulate_feedback(ppo_generated_text):.4f}\n")
+    print(f"Generated Text: {lms_generated_text}")
+    print(f"Feedback Score: {simulate_feedback(lms_generated_text):.4f}\n")
 
 # Compare PPO-guided generation with baseline and post-training
-ppo_scores = [simulate_feedback(generate_text_with_ppo(gpt2_model, ppo_model, prompt)) for prompt in prompts]
+ppo_scores = [simulate_feedback(generate_text_with_ppo_lms(gpt2_model, ppo_model, prompt)) for prompt in prompts]
 print("Final Performance Comparison:")
 print(f"Average Baseline Feedback: {sum(baseline_scores) / len(baseline_scores):.4f}")
 print(f"Average Post-Training Feedback: {sum(post_training_scores) / len(post_training_scores):.4f}")
